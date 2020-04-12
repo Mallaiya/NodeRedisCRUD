@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <style>
+      .delete:checked + span{
+        color: red;
+      }
+      .task-list{
+        list-style: none;
+      }
+      .contact > div{
+        margin:5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Add Task
+    </h1>
+    <form method="post" action="/task">
+      <label for="task">Add Todo</label>
+      <input type="text" name="task" placeholder="Add Task">
+      <input type="submit" value="Add">
+    </form>
+    <h1><%= topic %></h1>
+    <form method="POST" action="/task/delete"> 
+      <ul class="task-list">
+        <% tasks.forEach((task)=> { %>
+          <li>
+            <label>
+              <input type="checkbox" class="delete" value="<%= task%>" name="tasks" ><span name="<%= task %>"><%= task %></span>
+            </label>
+          </li>
+      <%  }) %>
+      </ul>
+      <input type="submit" value="Remove">
+    </form>
+    <h1>Contact</h1>
+    <p>Email - <%= contact.email%></p>
+    <p>Name - <%= contact.name%></p>
+    <form method="POST" action="/contact" class="contact">
+      <div><label>Email </label><input type="text" name="email" type="email"/></div>
+      <div><label>Name </label><input type="text" name="name" type="text"/></div>
+      <input type="submit" value="Submit"/>
+    </form>
+  </body>
+  </body>
+</html>
